@@ -3,5 +3,6 @@ package model.bill;
 /**
  * Created by sunshine on 2016/11/20.
  */
-public class BillStatus {
+public enum BillStatus {
+    CREATED, PAYED, REFUNDED
 }
