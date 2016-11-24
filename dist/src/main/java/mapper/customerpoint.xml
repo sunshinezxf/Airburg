@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="airburg.customerpoint">
+    <resultMap id="pointVo" type="model.points.CustomerPoint">
+        <result property="pointId" column="point_id"></result>
+        <result property="pointValue" column="point_value"></result>
+        <result property="updateAt" column="update_time"></result>
+        <result property="blockFlag" column="block_flag"></result>
+        <result property="createAt" column="create_time"></result>
+        <association property="customer" column="customerId = customer_id"></association>
+    </resultMap>
+
+    <insert id="insert" parameterType="model.points.CustomerPoint">
+        INSERT INTO airburg_v2.customer_point(point_id, customer_id, point_value, update_time, block_flag, create_time)
+        VALUES (#{pointId}, #{customer.customerId}, #{pointValue}, #{updateAt}, #{blockFlag}, #{createAt})
+    </insert>
+
+    <select id="query" parameterType="java.util.Map" resultMap="pointVo">
+        SELECT point_id, customer_id, point_value, update_time, block_flag, create_time
+        FROM airburg_v2.customer_point
+        WHERE 1 = 1
+        <if test="pointId != null">
+            AND point_id = #{pointId}
+        </if>
+        <if test="customerId != null">
+            AND customer_id = #{customerId}
+        </if>
+    </select>
+</mapper>
