@@ -25,7 +25,6 @@ import java.util.Set;
 public class MessageServiceImpl implements MessageService {
     private Logger logger = LoggerFactory.getLogger(MessageServiceImpl.class);
 
-    @Override
     public ResultData send(final String phone, final String message) {
         ResultData result = new ResultData();
         final String apiKey = PlatformConfig.instance().getValue("message_api_key");
@@ -55,8 +54,7 @@ public class MessageServiceImpl implements MessageService {
         }
         return result;
     }
-
-    @Override
+    
     public ResultData send(final Set<String> phone, final String message) {
         ResultData result = new ResultData();
         try {
@@ -69,7 +67,7 @@ public class MessageServiceImpl implements MessageService {
                     }
                     list.deleteCharAt(list.length() - 1);
                     Client client = Client.create();
-                    client.addFilter(new HTTPBasicAuthFilter("api", PlatformConfig.getValue("message_api_key")));
+                    client.addFilter(new HTTPBasicAuthFilter("api", PlatformConfig.instance().getValue("message_api_key")));
                     WebResource webResource = client.resource(
                             "http://sms-api.luosimao.com/v1/send_batch.json");
                     MultivaluedMapImpl formData = new MultivaluedMapImpl();
