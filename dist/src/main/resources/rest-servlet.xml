@@ -28,4 +28,6 @@
             </list>
         </property>
     </bean>
+
+    <context:component-scan base-package="controller"/>
 </beans>

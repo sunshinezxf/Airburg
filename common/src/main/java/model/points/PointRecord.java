@@ -1,11 +1,12 @@
 package model.points;
 
+import model.Entity;
 import model.customer.Customer;
 
 /**
  * Created by sunshine on 2016/11/22.
  */
-public class PointRecord {
+public class PointRecord extends Entity {
     private String recordId;
 
     private PointLabel label;
@@ -17,6 +18,19 @@ public class PointRecord {
     private String recordDescription;
 
     private RecordType recordType;
+
+    public PointRecord() {
+        super();
+    }
+
+    public PointRecord(PointLabel label, Customer customer, int recordValue, String recordDescription, RecordType recordType) {
+        this();
+        this.label = label;
+        this.customer = customer;
+        this.recordValue = recordValue;
+        this.recordDescription = recordDescription;
+        this.recordType = recordType;
+    }
 
     public String getRecordId() {
         return recordId;

@@ -3,6 +3,7 @@ package service.impl;
 import dao.CustomerPointDao;
 import dao.PointRecordDao;
 import model.points.CustomerPoint;
+import model.points.PointRecord;
 import model.utils.ResponseCode;
 import model.utils.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,7 @@ public class PointServiceImpl implements PointService {
 
     public ResultData inPoint(CustomerPoint point, int inValue) {
         ResultData result = new ResultData();
-        
+        PointRecord record = new PointRecord();
         return result;
     }
 
