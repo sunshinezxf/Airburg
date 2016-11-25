@@ -15,4 +15,22 @@
         INSERT INTO airburg_v2.customer(customer_id, customer_wechat, customer_name, customer_phone, customer_address, block_flag, create_time)
         VALUES (#{customerId}, #{customerWechat}, #{customerName}, #{customerPhone}, #{customerAddress}, #{blockFlag}, #{createAt})
     </insert>
+
+    <select id="query" parameterType="java.util.Map">
+        SELECT customer_id, customer_wechat, customer_name, customer_phone, customer_address, block_flag, create_time
+        FROM airburg_v2.customer
+        WHERE 1 = 1
+        <if test="customerId != null">
+            AND customer_id = #{customerId}
+        </if>
+        <if test="customerName != null">
+            AND customerName = #{customerName}
+        </if>
+        <if test="customerPhone != null">
+            AND customer_phone = #{customerPhone}
+        </if>
+        <if test="blockFlag != null">
+            AND block_flag = #{blockFlag}
+        </if>
+    </select>
 </mapper>
