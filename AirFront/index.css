@@ -1,0 +1,24 @@
+
+html, body, #root {
+  height: 100%;
+    min-width: 600px;
+}
+
+
+.bigTile{font-size:.72rem;color:#c60a1e;padding:.48rem 0;text-align:center;}
+.bigTile p{font-size:.3rem;color:#999}
+
+.am-button-primary {
+    color: #fff;
+    background-color: #c60a1e;
+}
+.am-button-primary.am-button-disabled:disabled {
+    color: #fff;
+    background-color: #c60a1e;
+    opacity:0.4;
+}
+.am-button-primary.am-button-active {background-color:#c60a1e}
+
+
+
+.bk-narbar {height:50px;background-color:#333;text-align: center}
