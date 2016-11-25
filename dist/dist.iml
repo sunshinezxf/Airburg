@@ -12,6 +12,18 @@
         </sourceRoots>
       </configuration>
     </facet>
+    <facet type="Spring" name="Spring">
+      <configuration>
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/rest-content.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/rest-controller.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/rest-dao.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/rest-service.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/rest-servlet.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring-quartz.xml</file>
+        </fileset>
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
@@ -29,8 +41,6 @@
     <orderEntry type="library" name="Maven: com.google.zxing:core:3.2.1" level="project" />
     <orderEntry type="library" name="Maven: com.google.zxing:javase:3.2.1" level="project" />
     <orderEntry type="library" name="Maven: com.beust:jcommander:1.48" level="project" />
-    <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.2.8" level="project" />
-    <orderEntry type="library" name="Maven: org.mybatis:mybatis-spring:1.2.2" level="project" />
     <orderEntry type="library" name="Maven: com.thoughtworks.xstream:xstream:1.4.8" level="project" />
     <orderEntry type="library" name="Maven: xmlpull:xmlpull:1.1.3.1" level="project" />
     <orderEntry type="library" name="Maven: xpp3:xpp3_min:1.1.4c" level="project" />
@@ -46,5 +56,23 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-context:4.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context-support:4.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:4.2.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.35" level="project" />
+    <orderEntry type="library" name="Maven: commons-dbcp:commons-dbcp:1.4" level="project" />
+    <orderEntry type="library" name="Maven: commons-pool:commons-pool:1.5.4" level="project" />
+    <orderEntry type="library" name="Maven: org.hibernate:hibernate-validator:5.3.0.Alpha1" level="project" />
+    <orderEntry type="library" name="Maven: javax.validation:validation-api:1.1.0.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging:3.3.0.Final" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml:classmate:1.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.2.8" level="project" />
+    <orderEntry type="library" name="Maven: org.mybatis:mybatis-spring:1.2.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-core:1.2.4" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.6.4" level="project" />
+    <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.8.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-web:1.2.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-spring:1.2.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-ehcache:1.2.4" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.ehcache:ehcache-core:2.5.0" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.jersey:jersey-bundle:1.19.1" level="project" />
+    <orderEntry type="library" name="Maven: javax.ws.rs:jsr311-api:1.1.1" level="project" />
   </component>
 </module>
