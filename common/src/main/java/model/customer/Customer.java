@@ -16,6 +16,17 @@ public class Customer extends Entity {
 
     private String customerAddress;
 
+    public Customer() {
+        super();
+    }
+
+    public Customer(String customerName, String customerPhone, String customerAddress) {
+        this();
+        this.customerName = customerName;
+        this.customerPhone = customerPhone;
+        this.customerAddress = customerAddress;
+    }
+
     public String getCustomerId() {
         return customerId;
     }

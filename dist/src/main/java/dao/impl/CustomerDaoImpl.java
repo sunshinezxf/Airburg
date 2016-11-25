@@ -3,6 +3,7 @@ package dao.impl;
 import dao.BaseDao;
 import dao.CustomerDao;
 import model.customer.Customer;
+import model.utils.IDGenerator;
 import model.utils.ResponseCode;
 import model.utils.ResultData;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Repository;
 public class CustomerDaoImpl extends BaseDao implements CustomerDao {
     public ResultData insert(Customer customer) {
         ResultData result = new ResultData();
+        customer.setCustomerId(IDGenerator.generate("CUS"));
         try {
             sqlSession.insert("airburg.customer.insert", customer);
             result.setData(customer);
