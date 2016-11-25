@@ -40,7 +40,7 @@ public class CustomerController {
         }
         Customer customer = new Customer(form.getCustomerName(), form.getCustomerPhone(), form.getCustomerAddress());
         if (!StringUtils.isEmpty(form.getUpperCustomerId())) {
-            Map<String, Object> condition = new HashMap<String, Object>();
+            Map<String, Object> condition = new HashMap<>();
             condition.put("customerId", form.getUpperCustomerId());
             ResultData response = customerService.fetchCustomer(condition);
             if (response.getResponseCode() == ResponseCode.RESPONSE_OK) {
@@ -62,7 +62,7 @@ public class CustomerController {
     @RequestMapping(method = RequestMethod.GET, value = "/overview")
     public ResultData overview() {
         ResultData result = new ResultData();
-        Map<String, Object> condition = new HashMap<String, Object>();
+        Map<String, Object> condition = new HashMap<>();
         ResultData response = customerService.fetchCustomer(condition);
         if (response.getResponseCode() == ResponseCode.RESPONSE_OK) {
             result.setData(response.getData());

@@ -2,7 +2,6 @@ package dao.impl;
 
 import dao.BaseDao;
 import dao.CustomerPointDao;
-import model.customer.Customer;
 import model.points.CustomerPoint;
 import model.utils.IDGenerator;
 import model.utils.ResponseCode;
@@ -23,7 +22,7 @@ public class CustomerPointDaoImpl extends BaseDao implements CustomerPointDao {
         ResultData result = new ResultData();
         point.setPointId(IDGenerator.generate("CPT"));
         try {
-            sqlSession.insert("airburg.customer.insert", point);
+            sqlSession.insert("airburg.customerpoint.insert", point);
             result.setData(point);
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -36,7 +35,7 @@ public class CustomerPointDaoImpl extends BaseDao implements CustomerPointDao {
     public ResultData query(Map<String, Object> condition) {
         ResultData result = new ResultData();
         try {
-            List<Customer> list = sqlSession.selectList("airburg.customer.query", condition);
+            List<CustomerPoint> list = sqlSession.selectList("airburg.customerpoint.query", condition);
             if (list.isEmpty()) {
                 result.setResponseCode(ResponseCode.RESPONSE_NULL);
             }
