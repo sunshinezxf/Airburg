@@ -121,5 +121,11 @@
             <artifactId>shiro-ehcache</artifactId>
             <version>1.2.4</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-bundle</artifactId>
+            <version>1.19.1</version>
+        </dependency>
     </dependencies>
 </project>
