@@ -8,6 +8,7 @@ import model.utils.ResultData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,7 @@ import service.CustomerService;
 
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,6 +39,15 @@ public class CustomerController {
             result.setDescription(JSON.toJSONString(br.getFieldErrors()));
         }
         Customer customer = new Customer(form.getCustomerName(), form.getCustomerPhone(), form.getCustomerAddress());
+        if (!StringUtils.isEmpty(form.getUpperCustomerId())) {
+            Map<String, Object> condition = new HashMap<String, Object>();
+            condition.put("customerId", form.getUpperCustomerId());
+            ResultData response = customerService.fetchCustomer(condition);
+            if (response.getResponseCode() == ResponseCode.RESPONSE_OK) {
+                Customer upper = ((List<Customer>) response.getData()).get(0);
+                customer.setUpper(upper);
+            }
+        }
         ResultData response = customerService.createCustomer(customer);
         if (response.getResponseCode() == ResponseCode.RESPONSE_OK) {
             result.setData(response.getData());

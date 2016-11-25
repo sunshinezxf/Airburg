@@ -16,6 +16,8 @@ public class Customer extends Entity {
 
     private String customerAddress;
 
+    private Customer upper;
+
     public Customer() {
         super();
     }
@@ -65,5 +67,13 @@ public class Customer extends Entity {
 
     public void setCustomerAddress(String customerAddress) {
         this.customerAddress = customerAddress;
+    }
+
+    public Customer getUpper() {
+        return upper;
+    }
+
+    public void setUpper(Customer upper) {
+        this.upper = upper;
     }
 }

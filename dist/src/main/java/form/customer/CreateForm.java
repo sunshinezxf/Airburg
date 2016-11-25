@@ -10,6 +10,8 @@ public class CreateForm {
 
     private String customerAddress;
 
+    private String upperCustomerId;
+
     public String getCustomerName() {
         return customerName;
     }
@@ -32,5 +34,13 @@ public class CreateForm {
 
     public void setCustomerAddress(String customerAddress) {
         this.customerAddress = customerAddress;
+    }
+
+    public String getUpperCustomerId() {
+        return upperCustomerId;
+    }
+
+    public void setUpperCustomerId(String upperCustomerId) {
+        this.upperCustomerId = upperCustomerId;
     }
 }
