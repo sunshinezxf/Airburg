@@ -7,12 +7,34 @@
         <result property="recordDescription" column="record_description"></result>
         <result property="blockFlag" column="block_flag"></result>
         <result property="createAt" column="create_time"></result>
-        <association property="label" column="labelId = label_id"></association>
-        <association property="recordType" column="typeId = typeId"></association>
+        <result property="recordType" column="typeId = type_id"></result>
+        <association property="label" column="labelId = label_id" select="labelQuery"></association>
+        <association property="customer" column="customerId = customer_id" select="customerQuery"></association>
     </resultMap>
 
     <insert id="insert" parameterType="model.points.PointRecord">
         INSERT INTO point_record(record_id, label_id, type_id, record_description, block_flag, create_time)
         VALUES (#{recordId}, #{label.labelId}, #{type.typeId}, #{recordDescription}, #{blockFlag}, #{createAt})
     </insert>
+
+    <select id="query" parameterType="java.util.Map" resultMap="recordVo">
+        SELECT record_id, record_value, record_description, block_flag, create_time, label_id, type_id, customer_id
+        FROM point_record
+        WHERE 1 = 1
+        <if test="recordId != null">
+            AND record_id = #{record_id}
+        </if>
+    </select>
+
+    <select id="labelQuery" parameterType="java.util.Map" resultMap="">
+        SELECT label_id, label_name, label_description
+        FROM airburg_v2.point_label
+        WHERE label_id = #{labelId}
+    </select>
+
+    <select id="customerQuery" parameterType="java.util.Map" resultMap="">
+        SELECT customer_id, customer_name, customer_phone
+        FROM airburg_v2.customer
+        WHERE customer_id = #{customerId}
+    </select>
 </mapper>
