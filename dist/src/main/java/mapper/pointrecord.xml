@@ -12,6 +12,18 @@
         <association property="customer" column="customerId = customer_id" select="customerQuery"></association>
     </resultMap>
 
+    <resultMap id="labelVo" type="model.points.PointLabel">
+        <result property="labelId" column="label_id"></result>
+        <result property="labelName" column="label_name"></result>
+        <result property="labelDescription" column="label_description"></result>
+    </resultMap>
+
+    <resultMap id="customerVo" type="model.customer.Customer">
+        <result property="customerId" column="customer_id"></result>
+        <result property="customerName" column="customer_name"></result>
+        <result property="customerPhone" column="customer_phone"></result>
+    </resultMap>
+
     <insert id="insert" parameterType="model.points.PointRecord">
         INSERT INTO point_record(record_id, label_id, type_id, record_description, block_flag, create_time)
         VALUES (#{recordId}, #{label.labelId}, #{type.typeId}, #{recordDescription}, #{blockFlag}, #{createAt})
@@ -26,13 +38,13 @@
         </if>
     </select>
 
-    <select id="labelQuery" parameterType="java.util.Map" resultMap="">
+    <select id="labelQuery" parameterType="java.util.Map" resultMap="labelVo">
         SELECT label_id, label_name, label_description
         FROM airburg_v2.point_label
         WHERE label_id = #{labelId}
     </select>
 
-    <select id="customerQuery" parameterType="java.util.Map" resultMap="">
+    <select id="customerQuery" parameterType="java.util.Map" resultMap="customerVo">
         SELECT customer_id, customer_name, customer_phone
         FROM airburg_v2.customer
         WHERE customer_id = #{customerId}
