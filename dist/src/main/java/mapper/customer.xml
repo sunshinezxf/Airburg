@@ -16,7 +16,7 @@
         VALUES (#{customerId}, #{customerWechat}, #{customerName}, #{customerPhone}, #{customerAddress}, #{blockFlag}, #{createAt})
     </insert>
 
-    <select id="query" parameterType="java.util.Map">
+    <select id="query" parameterType="java.util.Map" resultMap="customerVo">
         SELECT customer_id, customer_wechat, customer_name, customer_phone, customer_address, block_flag, create_time
         FROM airburg_v2.customer
         WHERE 1 = 1
