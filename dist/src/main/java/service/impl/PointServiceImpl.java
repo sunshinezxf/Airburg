@@ -68,15 +68,18 @@ public class PointServiceImpl implements PointService {
     public ResultData outPoint(CustomerPoint point, PointRecord record) {
         ResultData result = new ResultData();
         ResultData response = pointRecordDao.insert(record);
+        if (response.getResponseCode() != ResponseCode.RESPONSE_OK) {
+            result.setResponseCode(ResponseCode.RESPONSE_ERROR);
+            result.setDescription(response.getDescription());
+        }
+        point.setPointValue(point.getPointValue() - record.getRecordValue());
+        response = customerPointDao.update(point);
         if (response.getResponseCode() == ResponseCode.RESPONSE_OK) {
             result.setData(response.getData());
         } else if (response.getResponseCode() == ResponseCode.RESPONSE_ERROR) {
             result.setResponseCode(ResponseCode.RESPONSE_ERROR);
             result.setDescription(response.getDescription());
-        } else {
-            result.setResponseCode(ResponseCode.RESPONSE_NULL);
         }
-        point.setPointValue(point.getPointValue() - record.getRecordValue());
         return result;
     }
 }

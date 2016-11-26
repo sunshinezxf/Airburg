@@ -23,9 +23,8 @@ public class PointRecord extends Entity {
         super();
     }
 
-    public PointRecord(PointLabel label, Customer customer, int recordValue, String recordDescription, RecordType recordType) {
+    public PointRecord(Customer customer, int recordValue, String recordDescription, RecordType recordType) {
         this();
-        this.label = label;
         this.customer = customer;
         this.recordValue = recordValue;
         this.recordDescription = recordDescription;

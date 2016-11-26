@@ -12,4 +12,6 @@ public interface CustomerPointDao {
     ResultData insert(CustomerPoint point);
 
     ResultData query(Map<String, Object> condition);
+
+    ResultData update(CustomerPoint point);
 }

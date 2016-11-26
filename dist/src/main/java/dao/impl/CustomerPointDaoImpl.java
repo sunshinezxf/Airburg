@@ -9,6 +9,7 @@ import model.utils.ResultData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +41,21 @@ public class CustomerPointDaoImpl extends BaseDao implements CustomerPointDao {
                 result.setResponseCode(ResponseCode.RESPONSE_NULL);
             }
             result.setData(list);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            result.setResponseCode(ResponseCode.RESPONSE_ERROR);
+            result.setDescription(e.getMessage());
+        }
+        return result;
+    }
+
+    @Override
+    public ResultData update(CustomerPoint point) {
+        ResultData result = new ResultData();
+        point.setUpdateAt(new Timestamp(System.currentTimeMillis()));
+        try {
+            sqlSession.update("airburg.customerpoint.update", point);
+            result.setData(point);
         } catch (Exception e) {
             logger.error(e.getMessage());
             result.setResponseCode(ResponseCode.RESPONSE_ERROR);

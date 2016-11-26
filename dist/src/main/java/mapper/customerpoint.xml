@@ -26,4 +26,15 @@
             AND customer_id = #{customerId}
         </if>
     </select>
+
+    <update id="update" parameterType="model.points.CustomerPoint">
+        UPDATE airburg_v2.customer_point
+        <set>
+            <if test="pointValue != null">
+                point_value = #{pointValue},
+            </if>
+            point_id = #{pointId}
+        </set>
+        WHERE point_id = #{pointId}
+    </update>
 </mapper>
