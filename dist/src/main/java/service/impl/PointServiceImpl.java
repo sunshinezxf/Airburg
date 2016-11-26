@@ -37,6 +37,7 @@ public class PointServiceImpl implements PointService {
         return result;
     }
 
+    @Override
     public ResultData createPoint(CustomerPoint point) {
         ResultData result = new ResultData();
         ResultData response = customerPointDao.insert(point);
@@ -48,15 +49,34 @@ public class PointServiceImpl implements PointService {
         return result;
     }
 
-    public ResultData inPoint(CustomerPoint point, int inValue) {
+    @Override
+    public ResultData inPoint(CustomerPoint point, PointRecord record) {
         ResultData result = new ResultData();
-        PointRecord record = new PointRecord();
+        ResultData response = pointRecordDao.insert(record);
+        if (response.getResponseCode() == ResponseCode.RESPONSE_OK) {
+            result.setData(response.getData());
+        } else if (response.getResponseCode() == ResponseCode.RESPONSE_ERROR) {
+            result.setResponseCode(ResponseCode.RESPONSE_ERROR);
+            result.setDescription(response.getDescription());
+        } else {
+            result.setResponseCode(ResponseCode.RESPONSE_NULL);
+        }
+        point.setPointValue(point.getPointValue() + record.getRecordValue());
         return result;
     }
 
-    public ResultData outPoint(CustomerPoint point, int outValue) {
+    public ResultData outPoint(CustomerPoint point, PointRecord record) {
         ResultData result = new ResultData();
-
+        ResultData response = pointRecordDao.insert(record);
+        if (response.getResponseCode() == ResponseCode.RESPONSE_OK) {
+            result.setData(response.getData());
+        } else if (response.getResponseCode() == ResponseCode.RESPONSE_ERROR) {
+            result.setResponseCode(ResponseCode.RESPONSE_ERROR);
+            result.setDescription(response.getDescription());
+        } else {
+            result.setResponseCode(ResponseCode.RESPONSE_NULL);
+        }
+        point.setPointValue(point.getPointValue() - record.getRecordValue());
         return result;
     }
 }
