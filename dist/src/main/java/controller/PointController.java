@@ -33,9 +33,6 @@ public class PointController {
     @Autowired
     private PointService pointService;
 
-    @Autowired
-    private CustomerService customerService;
-
     @RequestMapping(method = RequestMethod.POST, value = "/customer/assign")
     public ResultData assign(@Valid PointRecordForm form, BindingResult br) {
         ResultData result = new ResultData();
@@ -45,7 +42,6 @@ public class PointController {
         }
         Map<String, Object> condition = new HashMap<>();
         condition.put("customerId", form.getCustomerId());
-
         ResultData response = pointService.fetchPoint(condition);
         if (response.getResponseCode() != ResponseCode.RESPONSE_OK) {
             result.setResponseCode(ResponseCode.RESPONSE_NULL);

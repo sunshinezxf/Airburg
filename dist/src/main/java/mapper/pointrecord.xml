@@ -7,7 +7,6 @@
         <result property="recordDescription" column="record_description"></result>
         <result property="blockFlag" column="block_flag"></result>
         <result property="createAt" column="create_time"></result>
-        <result property="recordType" column="typeId = type_id"></result>
         <association property="label" column="labelId = label_id" select="labelQuery"></association>
         <association property="customer" column="customerId = customer_id" select="customerQuery"></association>
     </resultMap>
@@ -25,8 +24,8 @@
     </resultMap>
 
     <insert id="insert" parameterType="model.points.PointRecord">
-        INSERT INTO point_record(record_id, label_id, type_id, record_description, block_flag, create_time)
-        VALUES (#{recordId}, #{label.labelId}, #{type.typeId}, #{recordDescription}, #{blockFlag}, #{createAt})
+        INSERT INTO point_record(record_id, customer_id, label_id, record_description, block_flag, create_time)
+        VALUES (#{recordId}, #{customer.customerId}, #{label.labelId}, #{recordDescription}, #{blockFlag}, #{createAt})
     </insert>
 
     <select id="query" parameterType="java.util.Map" resultMap="recordVo">

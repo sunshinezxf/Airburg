@@ -7,7 +7,13 @@
         <result property="updateAt" column="update_time"></result>
         <result property="blockFlag" column="block_flag"></result>
         <result property="createAt" column="create_time"></result>
-        <association property="customer" column="customerId = customer_id"></association>
+        <association property="customer" column="customerId = customer_id" select="upperQuery"></association>
+    </resultMap>
+
+    <resultMap id="upperVo" type="model.customer.Customer">
+        <result property="customerId" column="customer_id"></result>
+        <result property="customerName" column="customer_name"></result>
+        <result property="customerPhone" column="customer_phone"></result>
     </resultMap>
 
     <insert id="insert" parameterType="model.points.CustomerPoint">
@@ -25,6 +31,12 @@
         <if test="customerId != null">
             AND customer_id = #{customerId}
         </if>
+    </select>
+
+    <select id="upperQuery" parameterType="java.util.Map" resultMap="upperVo">
+        SELECT customer_id, customer_name, customer_phone
+        FROM airburg_v2.customer
+        WHERE customer_id = #{customerId}
     </select>
 
     <update id="update" parameterType="model.points.CustomerPoint">

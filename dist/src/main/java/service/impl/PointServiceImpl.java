@@ -30,6 +30,7 @@ public class PointServiceImpl implements PointService {
         if (response.getResponseCode() == ResponseCode.RESPONSE_OK) {
             result.setData(response.getData());
         } else if (response.getResponseCode() == ResponseCode.RESPONSE_ERROR) {
+            result.setResponseCode(ResponseCode.RESPONSE_ERROR);
             result.setDescription(response.getDescription());
         } else {
             result.setResponseCode(ResponseCode.RESPONSE_NULL);
