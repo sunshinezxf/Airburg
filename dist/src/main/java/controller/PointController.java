@@ -15,10 +15,10 @@ import service.PointService;
 @RestController
 @RequestMapping("/point")
 public class PointController {
+    private Logger logger = LoggerFactory.getLogger(PointController.class);
+
     @Autowired
     private PointService pointService;
-
-    private Logger logger = LoggerFactory.getLogger(PointController.class);
 
     @RequestMapping(method = RequestMethod.POST, value = "/customer/assign")
     public ResultData assign() {

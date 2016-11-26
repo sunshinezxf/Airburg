@@ -20,7 +20,13 @@ public class CustomerPoint extends Entity {
 
     public CustomerPoint() {
         super();
+        this.pointValue = 0;
         this.updateAt = new Timestamp(System.currentTimeMillis());
+    }
+
+    public CustomerPoint(Customer customer) {
+        this();
+        this.customer = customer;
     }
 
     public String getPointId() {
