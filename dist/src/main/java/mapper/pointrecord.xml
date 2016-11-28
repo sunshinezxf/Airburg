@@ -24,8 +24,8 @@
     </resultMap>
 
     <insert id="insert" parameterType="model.points.PointRecord">
-        INSERT INTO point_record(record_id, customer_id, label_id, record_description, block_flag, create_time)
-        VALUES (#{recordId}, #{customer.customerId}, #{label.labelId}, #{recordDescription}, #{blockFlag}, #{createAt})
+        INSERT INTO point_record(record_id, customer_id, label_id, record_description, block_flag, create_time,record_value)
+        VALUES (#{recordId}, #{customer.customerId}, #{label.labelId}, #{recordDescription}, #{blockFlag}, #{createAt},#{recordValue})
     </insert>
 
     <select id="query" parameterType="java.util.Map" resultMap="recordVo">

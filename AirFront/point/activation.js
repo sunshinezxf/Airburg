@@ -50,16 +50,24 @@ var Activation = React.createClass({
         var form = this.props.form;
         form.validateFields((error, value) => {
             console.log(error, value);
-            form.submit(()=> {
-                alert('submit form call back')
-            })
+            if(!error){
+                var phone=value.phone;
+                phone=phone.replace(/\s/g, "");
+                value.phone=phone;
+                console.log(value);
+                alert('activate account');
+                window.location.hash='/pointCenter';
+            }
+            // form.submit(()=> {
+            //     alert('submit form call back')
+            // })
         });
     },
     sendMsg(){
         var phone = this.props.form.getFieldProps('phone').value;
         if (phone){
             phone = phone.replace(/\s/g, "");
-            if(phone.length==11&&phone.startsWith('1')){
+            if(/^1[3|4|5|7|8]\d{9}$/.test(phone)){
                 //send msg
                 Toast.info('验证码已发送',2);
                 return true;
@@ -74,7 +82,7 @@ var Activation = React.createClass({
         // this.props.form.submit(this.callback);
     },
     render(){
-        const {getFieldProps, submit} = this.props.form;
+        const {getFieldProps} = this.props.form;
         return (
             <div>
                 <div className="bigTile">

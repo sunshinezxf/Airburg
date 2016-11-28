@@ -1,9 +1,8 @@
 //客户相关的actions
-export function listCustomer(start,size){
+export function listCustomers(list){
     return {
         type:'LIST_CUSTOMERS',
-        start,
-        size
+        list
     }
 }
 export function queryCustomer(phone,name){
@@ -13,9 +12,9 @@ export function queryCustomer(phone,name){
         name
     }
 }
-export function addCustomer(customer){
+export function createCustomer(customer){
     return{
-        type:'ADD_CUSTOMER',
+        type:'CREATE_CUSTOMER',
         customer
     }
 }
@@ -32,11 +31,16 @@ export function updateCustomer(customer){
     }
 }
 
-//积分相关的action
-export function points(phone,code){
-    return{
-        type:'ACTIVATE_ACCOUNT',
-        phone,
-        code
+//客户积分相关的action
+export function listCustomerPoints(customerPoints){
+    return {
+        type:'LIST_CUSTOMERPOINTS',
+        customerPoints
+    }
+}
+export function assignCustomerPoint(assign){
+    return {
+        type:'ASSIGN_POINT',
+        assign
     }
 }

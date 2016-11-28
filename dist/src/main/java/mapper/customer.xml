@@ -9,15 +9,22 @@
         <result property="customerAddress" column="customer_address"></result>
         <result property="blockFlag" column="block_flag"></result>
         <result property="createAt" column="create_time"></result>
+        <association property="upper" column="upperId = upper_customer_id" select="upperQuery"></association>
+    </resultMap>
+
+    <resultMap id="upperVo" type="model.customer.Customer">
+        <result property="customerId" column="customer_id"></result>
+        <result property="customerName" column="customer_name"></result>
+        <result property="customerPhone" column="customer_phone"></result>
     </resultMap>
 
     <insert id="insert" parameterType="model.customer.Customer">
-        INSERT INTO airburg_v2.customer(customer_id, customer_wechat, customer_name, customer_phone, customer_address, block_flag, create_time)
-        VALUES (#{customerId}, #{customerWechat}, #{customerName}, #{customerPhone}, #{customerAddress}, #{blockFlag}, #{createAt})
+        INSERT INTO airburg_v2.customer(customer_id, customer_wechat, customer_name, customer_phone, customer_address, block_flag, create_time,upper_customer_id)
+        VALUES (#{customerId}, #{customerWechat}, #{customerName}, #{customerPhone}, #{customerAddress}, #{blockFlag}, #{createAt},#{upper.customerId})
     </insert>
 
     <select id="query" parameterType="java.util.Map" resultMap="customerVo">
-        SELECT customer_id, customer_wechat, customer_name, customer_phone, customer_address, block_flag, create_time
+        SELECT customer_id, customer_wechat, customer_name, customer_phone, customer_address, block_flag, create_time,upper_customer_id
         FROM airburg_v2.customer
         WHERE 1 = 1
         <if test="customerId != null">
@@ -32,5 +39,11 @@
         <if test="blockFlag != null">
             AND block_flag = #{blockFlag}
         </if>
+    </select>
+
+    <select id="upperQuery" parameterType="java.util.Map" resultMap="upperVo">
+        SELECT customer_id, customer_name, customer_phone
+        FROM airburg_v2.customer
+        WHERE customer_id = #{upperId}
     </select>
 </mapper>
