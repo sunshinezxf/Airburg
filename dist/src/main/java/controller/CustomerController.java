@@ -5,6 +5,7 @@ import form.customer.ActivateForm;
 import form.customer.CreateForm;
 import model.customer.Customer;
 import model.points.CustomerPoint;
+import model.utils.IDGenerator;
 import model.utils.ResponseCode;
 import model.utils.ResultData;
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import service.CustomerService;
+import service.MessageService;
 import service.PointService;
 
 import javax.validation.Valid;
@@ -36,6 +38,9 @@ public class CustomerController {
 
     @Autowired
     private PointService pointService;
+
+    @Autowired
+    private MessageService messageService;
 
     @RequestMapping(method = RequestMethod.POST, value = "/create")
     public ResultData create(@Valid CreateForm form, BindingResult br) {
@@ -77,6 +82,33 @@ public class CustomerController {
         } else {
             result.setResponseCode(ResponseCode.RESPONSE_NULL);
         }
+        return result;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/activate")
+    public ResultData activate(String phone) {
+        ResultData result = new ResultData();
+        if (StringUtils.isEmpty(phone)) {
+            result.setResponseCode(ResponseCode.RESPONSE_ERROR);
+            result.setDescription("手机号不能为空");
+            return result;
+        }
+        Map<String, Object> condition = new HashMap<>();
+        condition.put("customerPhone", phone);
+        ResultData response = customerService.fetchCustomer(condition);
+        if (response.getResponseCode() != ResponseCode.RESPONSE_OK) {
+            result.setResponseCode(ResponseCode.RESPONSE_NULL);
+            return result;
+        }
+        String message = "您好，你此次登陆的验证码为" + IDGenerator.generate() + ", 5分钟内有效.";
+        //启用线程来发送短信
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                messageService.send(phone, message);
+            }
+        }.start();
         return result;
     }
 
